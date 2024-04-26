@@ -1,0 +1,36 @@
+<mat-table [dataSource]="clientes">
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Código </mat-header-cell>
+        <mat-cell *matCellDef="let cliente"> {{cliente._id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let cliente"> {{cliente.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="age">
+        <mat-header-cell *matHeaderCellDef> Idade </mat-header-cell>
+        <mat-cell *matCellDef="let cliente"> {{cliente.age}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="action-column-header">
+            <button mat-mini-fab color="primary" (click)="onAdd()" aria-label="Adicionar um cliente">
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-header-cell>
+
+        <mat-cell class="action-column" *matCellDef="let cliente">
+            <button mat-icon-button color="accent" (click)="onEdit(cliente)" aria-label="Editar um cliente">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onDelete(cliente)" aria-label="Remover um cliente">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
